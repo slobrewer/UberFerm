@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <inttypes.h>
-#include "WProgram.h"
+#include "Arduino.h"
 
 OLEDFourBit::OLEDFourBit(uint8_t rs, uint8_t rw, uint8_t enable,
 			     uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7)
@@ -188,9 +188,10 @@ inline void OLEDFourBit::command(uint8_t value) {
   waitBusy();
 }
 
-inline void OLEDFourBit::write(uint8_t value) {
+inline size_t OLEDFourBit::write(uint8_t value) {
   send(value, HIGH);
   waitBusy();
+  return 0;
 }
 
 /************ low level data pushing commands **********/
